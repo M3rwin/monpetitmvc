@@ -1,0 +1,17 @@
+{
+    "name": "vendor/m-v-c",
+    "description": "Description of project MVC.",
+    "authors": [
+        {
+            "name": "marco.clin",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {},
+    "autoload":{
+        "psr-4":{
+            "App\\":"src",
+            "Tools\\":"tools"
+        }
+    }
+}
