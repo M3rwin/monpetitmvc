@@ -1,17 +1,16 @@
 {
-    "name": "vendor/m-v-c",
-    "description": "Description of project MVC.",
+    "name": "ramer/monpetitmvc",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Tools\\": "tools"
+        }
+    },
     "authors": [
         {
-            "name": "marco.clin",
-            "email": "your@email.here"
+            "name": "M3rwin",
+            "email": "marcoetude@gmail.com"
         }
     ],
-    "require": {},
-    "autoload":{
-        "psr-4":{
-            "App\\":"src",
-            "Tools\\":"tools"
-        }
-    }
+    "require": {}
 }
