@@ -3,6 +3,7 @@
 namespace App\controller;
 use App\model\GestionCommandeModel;
 use App\Exceptions\AppException;
+use ReflectionClass;
 
 
 class GestionCommandeController {
@@ -13,7 +14,8 @@ class GestionCommandeController {
         $id = filter_var(intval($params['id']), FILTER_VALIDATE_INT);
         $uneCommande = $modele->findCommande($id);
         if($uneCommande){
-            include_once PATH_VIEW . "GestionCommandeView\uneCommande.php";
+            $r = new ReflectionClass($this);
+            include_once PATH_VIEW . str_replace('Controller', 'View', $r->getShortName()) . "\uneCommande.php";
         }else{
             throw new AppException("Commande " . $id . " inconnue");
         }
@@ -24,7 +26,8 @@ class GestionCommandeController {
         $modele = new GestionCommandeModel();
         $commandes = $modele->findAll();
         if($commandes){
-            include_once PATH_VIEW . "GestionCommandeView\plusieursCommandes.php";
+            $r = new ReflectionClass($this);
+            include_once PATH_VIEW . str_replace('Controller', 'View', $r->getShortName()) . "\plusieursCommandes.php";
         }else{
             throw new AppException("Aucune commande");
         }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\controller;
 use App\model\GestionClientModel;
 use App\Exceptions\AppException;
+use ReflectionClass;
 
 
 class GestionClientController{
@@ -15,7 +16,8 @@ class GestionClientController{
         $id = filter_var(intval($params['id']), FILTER_VALIDATE_INT);
         $unClient = $modele->find($id);
         if($unClient){
-            include_once PATH_VIEW . "GestionClientView\unClient.php";
+            $r = new ReflectionClass($this);
+            include_once PATH_VIEW . str_replace('Controller', 'View', $r->getShortName()) . "\unClient.php";
         }else{
             throw new AppException("Client " . $id . " inconnu");
         }
@@ -26,7 +28,8 @@ class GestionClientController{
         $modele = new GestionClientModel();
         $clients = $modele->findAll();
         if($clients){
-            include_once PATH_VIEW . "GestionClientView\plusieursClients.php";
+            $r = new ReflectionClass($this);
+            include_once PATH_VIEW . str_replace('Controller', 'View', $r->getShortName()) . "\plusieursClients.php";
         }else{
             throw new AppException("Aucun clients");
         }
