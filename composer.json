@@ -12,5 +12,7 @@
             "email": "marcoetude@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "twig/twig": "v3.7.1"
+    }
 }

@@ -1,5 +1,7 @@
+
+use clicommvc;
 DELETE from `commande`;
-DELETE from client`;
+DELETE from `client`;
 DELETE from `utilisateur`;
 
 INSERT INTO `client` VALUES 
