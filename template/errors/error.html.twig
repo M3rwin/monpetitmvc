@@ -1,0 +1,9 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+<h1>OUPS</h1>
+<div>Une exception a été levée : {{ Exception.getMessage() }}</div>
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+    <div class="text-center">Fin de l'affichage</div>
+{% endblock %}

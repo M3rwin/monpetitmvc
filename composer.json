@@ -1,16 +1,19 @@
 {
-    "name": "ramer/monpetitmvc",
-    "autoload": {
-        "psr-4": {
-            "App\\": "src/",
-            "Tools\\": "tools"
-        }
-    },
+    "name": "vendor/mon-petit-m-v-c",
+    "description": "Description of project MonPetitMVC.",
     "authors": [
         {
-            "name": "M3rwin",
-            "email": "marcoetude@gmail.com"
+            "name": "egor.gututui",
+            "email": "egor-gut@outlook.fr"
         }
     ],
-    "require": {}
+    "require": {
+        "twig/twig": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\":"src",
+            "Tools\\":"tools"
+        }
+    }
 }
