@@ -1,7 +1,7 @@
 {% extends "layout.html.twig" %}
 {% block contenu %}
     <p> <h2> Information du Client numéro {{ unClient.getId() }} </h2> </p>
-    <p> {{ unClient.getPrenomCli() }}{{ unClient.getNomCli() }}  </p>
+    <p> {{ unClient.getPrenomCli() }} {{ unClient.getNomCli() }}  </p>
     <p> {{ unClient.getAdresseRue1Cli() }} </p>
     {% if unClient.getAdresseRue2Cli() %}
         <p>{{ unClient.getAdresseRue2Cli() }}</p>
@@ -11,5 +11,5 @@
 {% endblock %}
 {% block footer %}
     {{ parent() }}
-    Fin de l'affichage
+    <div class="text-center"> Fin de l'affichage </div>
 {% endblock %}
