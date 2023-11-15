@@ -23,14 +23,14 @@ try {
         throw new Error("Le contrôleur demandé n'existe pas");
     }
 } catch (Error $ex) {
-   include(PATH_VIEW . '/errors/error.html');
-   echo $ex->getMessage() . "||" . $ex->getCode() . " sur le fichier " . $ex->getFile() . " à la ligne " . $ex->getLine() . "<br>";
+    include(PATH_VIEW . '/errors/error.html');
+    echo $ex->getMessage() . " sur le fichier " . $ex->getFile() . " à la ligne " . $ex->getLine() . "<br>";
 } catch (AppException $ex) {
     include(PATH_VIEW . '/errors/error.html');     
-    echo $ex->getMessage() . "||" . $ex->getCode() . " sur le fichier " . $ex->getFile() . " à la ligne " . $ex->getLine() . "<br>";
+    echo $ex->getMessage() . " sur le fichier " . $ex->getFile() . " à la ligne " . $ex->getLine() . "<br>";
 } catch (Exception $ex) {
-     include(PATH_VIEW . '/errors/error.html');
-     echo $ex->getMessage() . "||" . $ex->getCode() . " sur le fichier " . $ex->getFile() . " à la ligne " . $ex->getLine() . "<br>";
+    include(PATH_VIEW . '/errors/error.html');
+    echo $ex->getMessage() . " sur le fichier " . $ex->getFile() . " à la ligne " . $ex->getLine() . "<br>";
 } 
 
     
