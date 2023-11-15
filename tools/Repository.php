@@ -51,10 +51,13 @@ class Repository {
             $ligne = $this->connexion->prepare($sql);
             $ligne->bindValue(':id', $id, PDO::PARAM_INT);
             $ligne->execute();
-            if(is_bool($ligne)){
+            $reponse = $ligne->fetchObject($this->classeNameLong);
+            if($reponse){
+                return $reponse;
+            }
+            else{
                 return null;
             }
-            return $ligne->fetchObject($this->classeNameLong);
         } catch (Exception) {
             throw new \App\Exceptions\AppException("Erreur technique innatendue");
         }

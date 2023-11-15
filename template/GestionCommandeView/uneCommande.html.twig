@@ -1,16 +1,16 @@
 {% extends "layout.html.twig" %}
 {% block contenu %}
     
-    {% if unClient %}
-        {% set idClient = unClient.getId() %}
+    {% if uneCommande %}
+        {% set idCommande = uneCommande.getId() %}
     {% endif %}
     {% block recherche %}
         {% include 'recherche.html.twig' %}
     {% endblock %}
-    {% if unClient %}
+    {% if uneCommande %}
     
-    <p> <h2> Information du Client numéro {{ unClient.getId() }} </h2> </p>
-    <p> {{ unClient.getPrenomCli() }} {{ unClient.getNomCli() }}  </p>
+    <p> <h2> Information de la commande numéro {{ uneCommande.getId() }} </h2> </p>
+    <p> Client : {{ uneCommande.getIdClient() }} </p>
     <p> {{ unClient.getAdresseRue1Cli() }} </p>
     {% if unClient.getAdresseRue2Cli() %}
         <p>{{ unClient.getAdresseRue2Cli() }}</p>
