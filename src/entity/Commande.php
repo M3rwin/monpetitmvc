@@ -41,16 +41,16 @@ class Commande {
         return $this->id;
     }
 
-    function getDateCde() {
+    public function getDateCde() {
         //return new DateTime($this->dateCde);
         return $this->dateCde;
     }
 
-    function getNoFacture() :?int {
-        return $this->noFacture;
+    public function getNoFacture() :int |string {
+        return $this->noFacture ?? "Aucun numéro de facture";
     }
 
-    function getIdClient() :int {
+    public function getIdClient() :int {
         return $this->idClient;    }
         
     public function setNoFacture(?int $noFacture): void {

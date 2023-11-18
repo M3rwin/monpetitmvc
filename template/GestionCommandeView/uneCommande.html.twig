@@ -5,25 +5,22 @@
         {% set idCommande = uneCommande.getId() %}
     {% endif %}
     {% block recherche %}
-        {% include 'recherche.html.twig' %}
+        {% include 'rechercheCommande.html.twig' %}
     {% endblock %}
     {% if uneCommande %}
     
+        <div class="container">
     <p> <h2> Information de la commande numéro {{ uneCommande.getId() }} </h2> </p>
-    <p> Client : {{ uneCommande.getIdClient() }} </p>
-    <p> {{ unClient.getAdresseRue1Cli() }} </p>
-    {% if unClient.getAdresseRue2Cli() %}
-        <p>{{ unClient.getAdresseRue2Cli() }}</p>
-    {% endif %}
-    <p>{{ unClient.getCpCli() }} {{ unClient.getVilleCli() }}</p>
-    <p>{{ unClient.getTelCli() }}</p>
+    <p> Client : {{ leClient.getId() }} {{ leClient.getNomCli() }} {{ leClient.getPrenomCli() }} </p>
+    <p> Date : {{ uneCommande.getDateCde() }} </p>
+    <p> Numéro de la facture : {{ uneCommande.getNoFacture() }}</p>
     
     {% else %}
     
         <p class="text-center">{{ message }}</p>
         
     {% endif %}
-    
+    </div>
 {% endblock %}
 {% block footer %}
     {{ parent() }}

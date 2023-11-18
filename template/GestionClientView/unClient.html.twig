@@ -5,10 +5,12 @@
         {% set idClient = unClient.getId() %}
     {% endif %}
     {% block recherche %}
-        {% include 'recherche.html.twig' %}
+        {% include 'rechercheClient.html.twig' %}
     {% endblock %}
     {% if unClient %}
     
+        <div class="container">
+        
     <p> <h2> Information du Client numéro {{ unClient.getId() }} </h2> </p>
     <p> {{ unClient.getPrenomCli() }} {{ unClient.getNomCli() }}  </p>
     <p> {{ unClient.getAdresseRue1Cli() }} </p>
@@ -23,6 +25,8 @@
         <p class="text-center">{{ message }}</p>
         
     {% endif %}
+    
+    </div>
     
 {% endblock %}
 {% block footer %}
