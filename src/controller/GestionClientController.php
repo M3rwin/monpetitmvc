@@ -8,8 +8,23 @@ use App\Exceptions\AppException;
 use ReflectionClass;
 use Tools\MyTwig;
 use Tools\Repository;
+use App\Entity\Client;
 
 class GestionClientController{
+    
+    
+    function verificationSaisieClient(array $params) : array {
+        $params["nomCli"] = htmlspecialchars($params["nomCli"]);
+        $params["prenomCli"] = htmlspecialchars($params["prenomCli"]);
+        $params["adresseRue1Cli"] = htmlspecialchars($params["adresseRue1Cli"]);
+        if($params["adresseRue2Cli"]){
+            $params["adresseRue2Cli"] = htmlspecialchars($params["adresseRue2Cli"]);
+        }
+        $params["cpCli"] = filter_var($params["cpCli"], FILTER_SANITIZE_NUMBER_INT);
+        $params["villeCli"] = htmlspecialchars($params["villeCli"]);
+        $params["telCli"] = filter_var($params["telCli"], FILTER_SANITIZE_NUMBER_INT);
+        return $params;
+    }
     
     public function chercheUn(array $params){
         // récupération d'un objet ClientRepository
@@ -50,8 +65,22 @@ class GestionClientController{
     
     
     public function creerClient(array $params){
-        $vue = "GestionClientView\\creerClient.html.twig";
-        MyTwig::afficheVue($vue, array());
+        if(empty($params)){
+            $vue = "GestionClientView\\creerClient.html.twig";
+            MyTwig::afficheVue($vue, array());
+        }else{
+            try{
+                $params = $this->verificationSaisieClient($params);
+                // Création de l'objet client à partir des données du formulaire
+                $client = new Client($params);
+                $repository = Repository::getRepository("App\Entity\Client");
+                $repository->insert($client);
+                $this->chercheTous();
+            } catch (Exception) {
+                throw new AppException("Erreur à la création du client");
+            }
+        }
+        
     }
     
     
@@ -63,5 +92,11 @@ class GestionClientController{
         } catch (Exception) {
             throw new AppException("Erreur à l'enregistrement du client");
         }
+    }
+    
+    public function nbClients() : void {
+        $repository = Repository::getRepository("App\Entity\Client");
+        $nbClients = $repository->countRows();
+        echo "Nombre de client : " . $nbClients;
     }
 }

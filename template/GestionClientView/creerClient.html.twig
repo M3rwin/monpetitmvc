@@ -2,7 +2,7 @@
 {% block contenu %}
     <div class="container">
         <h2>Nouveau client</h2>
-        <form action="index. php?c=GestionClient&a=enregistreClient" method="post">
+        <form action="index.php?c=GestionClient&a=creerClient" method="post">
             <div class="form-group">
                 <label for="titre">Titre</label>
                 <select class="form-control" id="titre" name="titreCli" required>
@@ -11,14 +11,12 @@
                     <option>Madame</option>
                     <option>Mademoiselle</option>
                     </select>
-            </div>
-            <div class="form-group">
                 <label for="nom">Nom :</label>
-                <input type="text" class="form-control" id="nom" placeholder="Nom :" name="nomCli" value="Roche" required>
+                <input type="text" class="form-control" id="nom" placeholder="Nom :" name="nomCli" value="Clin" required>
                 <label for="prenom">Prenom :</label>
-                <input type="text" class="form-control" id="prenom" placeholder="Prenom" name="prenomCli" value="Benoit" required>
+                <input type="text" class="form-control" id="prenom" placeholder="Prenom" name="prenomCli" value="Marco" required>
                 <label for="adressel">Adresse :</label>
-                <input type="text" class="form-control" id="prenom" placeholder="Adresse" name="adresseRuelCli" value="Les Lauriers" required>
+                <input type="text" class="form-control" id="prenom" placeholder="Adresse" name="adresseRue1Cli" value="Les Lauriers" required>
                 <label for="adresse2">Complement d'adresse :</label>
                 <input type="text" class="form-control" id="adresse2" placeholder="Complement d'adresse (facultatif)" name="adresseRue2Cli" value="Avenue W. Churchill">
                 <label for="CP">Code postal :</label>

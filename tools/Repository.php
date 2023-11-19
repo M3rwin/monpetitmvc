@@ -52,14 +52,44 @@ class Repository {
             $ligne->bindValue(':id', $id, PDO::PARAM_INT);
             $ligne->execute();
             $reponse = $ligne->fetchObject($this->classeNameLong);
-            if($reponse){
+            if ($reponse) {
                 return $reponse;
-            }
-            else{
+            } else {
                 return null;
             }
         } catch (Exception) {
             throw new \App\Exceptions\AppException("Erreur technique innatendue");
         }
     }
+
+    public function insert(object $object): void {
+        // conversion d'un objet en tableau
+        $attributs = (array) $object;
+        array_shift($attributs);
+        $colonnes = "(";
+        $colonnesParams = "(";
+        $parametres = array();
+        foreach ($attributs as $cle => $valeur) {
+            $cle = str_replace("\0", "", $cle);
+            $c = str_replace($this->classeNameLong, "", $cle);
+            if ($c != "id") {
+                $colonnes .= $c . " ,";
+                $colonnesParams .= " ? ,";
+                $parametres[] = $valeur;
+            }
+        }
+        $cols = substr($colonnes, 0, -1);
+        $colsParams = substr($colonnesParams, 0, -1);
+        $sql = "insert into " . $this->table . " " . $cols . ") values " . $colsParams . ") ";
+        $unObjetPDO = Connexion::getConnexion();
+        $req = $unObjetPDO->prepare($sql);
+        $req->execute($parametres);
+    }
+    
+    public function countRows() : int {
+        $sql = "select count(*) from " . $this->table;
+        $nbLignes = $this->connexion->query($sql);
+        return (int)$nbLignes->fetch(PDO::FETCH_NUM)[0];
+    }
+    
 }
