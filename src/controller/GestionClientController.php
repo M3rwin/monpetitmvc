@@ -41,7 +41,7 @@ class GestionClientController {
             'villeCli' => FILTER_SANITIZE_SPECIAL_CHARS
         );
         $retour = filter_var_array($params, $args, false);
-        if (isset($retour['titreCli']) || isset($retour['cpCli']) || isset($retour['villecli'])) {
+        if (isset($retour['titreCli']) || isset($retour['cpCli']) || isset($retour['villeCli'])) {
             // c'est le retour du formulaire de choix de filtre
             $element = "Choisir ... ";
             while (in_array($element, $retour)) {
@@ -180,12 +180,16 @@ class GestionClientController {
         $paramsVue['villes'] = $villes;
         // Gestion du retour du formulaire
         // On va d'abord filtrer et préparer le retour du formulaire avec la fonction verifieEtPrepareCriteres
+        $criteresPrepares = $params;
         $criteresPrepares = $this->verifieEtPrepareCriteres($params);
         if (count($criteresPrepares) > 0) {
             $clients = $repository->findBy($params);
             $paramsVue['lesClients'] = $clients;
+            $criteres = [];
             foreach ($criteresPrepares as $valeur) {
-                ($valeur != "Choisir...") ? ($criteres[] = $valeur) : (null);
+                if ($valeur != "Choisir...") {
+                    $criteres[] = $valeur;
+                }
             }
             $paramsVue['criteres'] = $criteres;
             $vue = "GestionClientView\\tousClients.html.twig";
