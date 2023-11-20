@@ -180,19 +180,18 @@ class GestionClientController {
         $paramsVue['villes'] = $villes;
         // Gestion du retour du formulaire
         // On va d'abord filtrer et préparer le retour du formulaire avec la fonction verifieEtPrepareCriteres
-        $criteresPrepares = $params;
+        //$criteresPrepares = $params;
         $criteresPrepares = $this->verifieEtPrepareCriteres($params);
-        if (count($criteresPrepares) > 0) {
-            $clients = $repository->findBy($params);
-            $paramsVue['lesClients'] = $clients;
-            $criteres = [];
-            foreach ($criteresPrepares as $valeur) {
-                if ($valeur != "Choisir...") {
-                    $criteres[] = $valeur;
+        if(count($criteresPrepares) > 0) {
+            foreach ($criteresPrepares as $cle => $valeur) {
+                if ($valeur != "Choisir ...") {
+                    $criteres[$cle] = $valeur;
                 }
             }
+            $clients = $repository->findBy($criteres);
+            $paramsVue['clients'] = $clients;
             $paramsVue['criteres'] = $criteres;
-            $vue = "GestionClientView\\tousClients.html.twig";
+            $vue = "GestionClientView\\plusieursClients.html.twig";
             MyTwig::afficheVue($vue, $paramsVue);
         } else {
             $vue = "GestionClientView\\filtreClients.html.twig";
