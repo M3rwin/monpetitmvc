@@ -1,0 +1,36 @@
+{% extends "layout.html.twig" %}
+
+{% block contenu %}
+    
+    {% if unClient %}
+        {% set idClient = unClient.getId() %}
+    {% endif %}
+    
+    {% block recherche %}
+        {% include '/blocks/clientRecherche.html.twig' %}
+        
+    {% if unClient %}
+        <div class="container">  
+    {{ include('/blocks/singleClient.html.twig') }}
+    
+    {% else %}
+        <p class="text-center">{{ message }}</p>  
+    {% endif %}
+    </div>
+{% endblock %}
+
+<div id="retour">
+    {% block retour %} {{ include('/blocks/singleClient.html.twig') }} {% endblock %}
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+    <div class="text-center"> Fin de l'affichage </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="assets/js/GestionClient/clientsFunctions.js"></script>
+<script type="text/javascript" src="assets/js/creationXHR.js"></script>
+{% endblock %}

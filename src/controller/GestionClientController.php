@@ -198,4 +198,22 @@ class GestionClientController {
             MyTwig::afficheVue($vue, $paramsVue);
         }
     }
+    
+    public function chercheUnAjax(array $params) : void{
+        $repository = Repository::getRepository("App\Entity\Client");
+        $ids = $repository->findIds();
+        $params['lesId'] = $ids;
+        
+        if(!array_key_exists('id', $params)){
+            $vue = "GestionClientView\\unClientAjax.html.twig";
+        }else{
+            $id = filter_var($params['id'], FILTER_VALIDATE_INT);
+            $unObjet = $repository->find($id);
+            $params['unClient']=$unObjet;
+            $vue =  "blocks/singleClient.html.twig";
+        }
+        MyTwig::afficheVue($vue, $params);
+        
+    }
+    
 }
