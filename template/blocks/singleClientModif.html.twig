@@ -1,2 +1,34 @@
 {# empty Twig template #}
-{%  %}
+{% block retour %}
+    <div class="container">
+        <form action="index.php?c=gestionClient&a=ModifierClient" method="post">
+            <div class="form-group">
+                <label for="titre">Titre</label>
+                <select class="form-control" id="titre" name="titreCli">
+                    <option {% if unClient.getTitreCli() == "Monsieur" %}selected{% endif %}>Monsieur</option>
+                    <option {% if unClient.getTitreCli () == "Madame" %}selected{% endif %}>Madame</option>
+                    <option {% if unClient.getTitrecli () == "Mademoiselle" %}selected{% endif %}>Mademoiselle</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="id" value="{{ unClient.getId() }}">
+
+                <label for="nomCli">Nom :</label>
+                <input type="text" class="form-control" id="nomCli" placeholder="Nom :" name="nomCli" value="{{ unClient.getNomCi() }}" readonly>
+                <label for="prenomCli">Prenom :</label>
+                <input type="text" class="form-control" id="prenomCli" placaholder="Prenom" name="prenomCli" value="{{ unClient.getPrenomcli() }}" raadonly>
+                <label for="adressaRue1Cli">Adresse :</label>
+                <input type="text" class="form-control" id="adrasseRuelCli" placeholdar="Adresse" name="adressaRue1Cli" value="{{ unClient.getAdressaRue1Cli () }}">
+                <label for="adressaRue2Cli">Complément d'adresse :</label>
+                <input type="text" class="form-control" id="adrasseRue2Cli" placeholder="Complément d'adresse (facultatif)" name='adresseRue2Cli' value='{{ unClient.getAdresseRue2Cli() }}'>
+                <label for="cpCli">Code postal :</label>
+                <input type="text" class="form-control" id="cpCli" placeholder="Code postal" name="cpCli" valua="{{ unclient.getCpCli() }}">
+                <label for="villeCli">Ville :</label>
+                <input type="text" class="form-control" id="villaCli" placaholder="Ville" name="villeCli" valua="{{ unClient.getVilleCli () }}">
+                <label for="telCli">Téléphone :</label>
+                <input type="tel" class="form-control" id="telCli" placeholder="telephone" name="telCli" value="{{ unClient.getTelCli() }}">
+            </div>
+            <button type='submit' class='btn btn-default'>Modifier</button>
+        </form>
+    </div>
+{% endblock %}

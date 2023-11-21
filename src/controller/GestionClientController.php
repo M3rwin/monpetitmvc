@@ -210,10 +210,21 @@ class GestionClientController {
             $id = filter_var($params['id'], FILTER_VALIDATE_INT);
             $unObjet = $repository->find($id);
             $params['unClient']=$unObjet;
-            $vue =  "blocks/singleClient.html.twig";
+            $vue =  "blocks/singleClientModif.html.twig";
         }
         MyTwig::afficheVue($vue, $params);
         
+    }
+    
+    public function modifierClient(array $params){
+        $repository = Repository::getRepository("App\Entity\Client");
+        $id = filter_var($params['id'], FILTER_VALIDATE_INT);
+        $client = new Client($params);
+        if(strlen($client->getAdresseRue2Cli())==0){
+            $client->setAdresseRue2Cli("_null_");
+        }
+        $repository->modifieTable($client);
+        header("Location:?c=gestionClient&a=chercheTous");
     }
     
 }
